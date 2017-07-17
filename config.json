@@ -1,0 +1,27 @@
+{
+  "name": "集字517",
+  "module": "",
+  "template": {
+    "html": [{
+      "page": "",
+      "title": ""
+    }],
+    "js": [],
+    "css": []
+  },
+  "analytics": {
+    "cnzz": {
+      "display": true,
+      "code": ""
+    },
+    "ronghai":{
+      "display": false,
+      "code": ""
+    },
+    "boxing":{
+      "display": false,
+      "code": ""
+    }
+  },
+  "wxshare": true
+}

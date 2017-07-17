@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{$Think.CONTROLLER_TITLE}</title>
+    <meta id="wxKeywords" name="Keywords" content="<keywords />">
+    <meta id="wxDescription" name="Description" content="<description />"/>
+    <meta name="apple-touch-fullscreen" content="YES"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta http-equiv="Expires" content="-1"/>
+    <meta http-equiv="pragram" content="no-cache"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <!--统计代码-->
+    <include file="_analytics" />
+    <!--ACTUI CSS 开始-->
+    <link rel="stylesheet" href="{$NOW_THEME_URL}Assets/etui/css/actui.css?{$Think.ET_VERSION}">
+    <!--ACTUI CSS 结束-->
+    <!--页面css样式开始-->
+    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{name}}/common.css?{$Think.ET_VERSION}">
+    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{name}}/index.css?{$Think.ET_VERSION}">
+    <!--页面css样式结束-->
+</head>
+<body>
+<div class="ui-content">
+
+
+</div>
+
+<!-- popup, panel 等放在这里 -->
+<div class="panel-overlay">
+
+
+</div>
+
+<!--微信分享-->
+<include file="_wxshare" />
+<include file="Public/etconfig" />
+<script>
+
+    seajs.use('init',function(init){
+        seajs.use('Js/Laogb/common.js?{$Think.ET_VERSION}');
+        seajs.use('Js/Laogb/index.js?{$Think.ET_VERSION}');
+    });
+
+</script>
+</body>
+</html>
