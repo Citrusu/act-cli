@@ -15,6 +15,31 @@ fs.readFile('./template/js/demo.js', 'utf-8', function(err, data){
     });
 });
 
+/*
+* 检查文件状态
+* 为了安全，已经存在的文件不会生成
+* */
 function fileStatus() {
     
+}
+
+/*
+* 读取文件
+* */
+function readFile(file){
+
+}
+
+/*
+* 操作文件
+* */
+function useFile(file){
+
+}
+
+/*
+* 保存文件
+* */
+function saveFile(file){
+
 }

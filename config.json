@@ -1,13 +1,26 @@
 {
-  "name": "集字517",
-  "module": "",
-  "template": {
-    "html": [{
-      "page": "",
-      "title": ""
+  "name": "",
+  "module": "test",
+  "src": {
+    "base": "./template/",
+    "html": "html/demo.html",
+    "js"  : "js/demo.js",
+    "css" : "css/demo.css"
+  },
+  "dist": {
+    "fileList": [{
+      "fileName": "demo",
+      "title": "活动示例"
     }],
-    "js": [],
-    "css": []
+    "html": {
+      "path": "./Template/Wechat/Yidake/"
+    },
+    "js": {
+      "path": "./Template/Wechat/Yidake/Assets/Js/"
+    },
+    "css": {
+      "path": "./Template/Wechat/Yidake/Assets/Css/"
+    }
   },
   "analytics": {
     "cnzz": {
