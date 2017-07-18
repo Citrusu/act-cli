@@ -6,90 +6,84 @@ const fs = require('fs');
 const config = require('./config.json');
 
 function init(){
-    let list = config.fileList;
+    let module = config.module;
+    let fileList = config.fileList;
     let map = config.page;
-    list.forEach(function(n, i){
-        let dist = map.dist.html;
-        checkFile(dist, function(){
-            // let temp = readFile(map.src.html);
-            // console.log(temp);return false;
-            // let page = useFile(temp);
-            // saveFile(map.dist.html + config.module, page);
-        });
-    })
+    let dists = map.dist;
+    for(let key in dists){
+        fileList.forEach(async (n, i) => {
+            let dist = dists[key] + module +'/'+ n.fileName + '.' + key;
+            mkDir(dist);
+            let tem = await readFile(map.src[key]);
+            let page = useFile(tem, n.fileName);
+            saveFile(dist, page);
+        })
+    }
+
 }
 init();
 
 /*
-* 检查文件状态
-* 为了安全，已经存在的文件不会生成
+* 检查/创建文件夹
 * */
-function checkFile(src, func) {
+function mkDir(src) {
     //创建多层目录
     let srcArr = src.split('/');
+    let file = '';
     srcArr.splice(0,1);
     if(srcArr[srcArr.length - 1] === ''){
-        srcArr.splice(srcArr.length - 1 ,1);
+        srcArr.splice(srcArr.length - 1, 1);
+    }else{
+        file = srcArr.splice(srcArr.length - 1, 1).toString();
     }
-    // console.log(srcArr);
     let srcStr = './';
     srcArr.forEach((n, i) => {
         srcStr += n + '/';
+        // console.log('检查目录'+srcStr);
         //检查目录是否存在，不存在则创建
         if(!fs.existsSync(srcStr)){
-            fs.mkdir(srcStr, () => {
+            fs.mkdirSync(srcStr, () => {
                 console.log(`创建目录 ${srcStr}`);
             });
+        }else{
+            // console.log(`${srcStr}该目录已存在`)
+        }
+        if(i >= srcArr.length -1){
+            // console.log(file);
         }
     });
-    return false;
-    fs.stat(src, function(err, stats){
-        // console.log(src);
-
-        if(err){
-            fs.mkdirSync('./test/src/', function(err){
-                if(err){
-                    console.log(err);
-                    return false;
-                }
-                console.log('创建目录' + src);
-            });
-        };
-
-        // console.log(stats)
-        // if(stats.isFile()){
-        //     console.log(`${src} 已经存在`);
-        // }else{
-            //func();
-        // }
-    })
 }
 
 /*
 * 读取文件
 * */
 function readFile(src){
-    fs.readFile(src, 'utf-8', function(err, data){
-        if(err){
-            console.log(err)
-        }else{
-            return data;
-        }
-    });
+    return new Promise((resolved, reject) => {
+        fs.readFile(src, 'utf-8', function(err, data){
+            if(err){
+                console.log(err);
+            }else{
+                resolved(data);
+            }
+        });
+    })
 }
 
 /*
 * 操作文件
 * */
-function useFile(file){
-    let rule = [
-        ['Date', new Date()],
-        ['title', config.name]
-    ];
+function useFile(file, fileName){
+    let rules = {
+        Date: new Date(),
+        module: config.module,
+        page: fileName
+    };
     let page = file;
-    rule.forEach(function(n, i){
-        page.replace(/{{"+ n[0] +"}}/g, n[1]);
-    });
+
+    for(let k in rules){
+        let patt = new RegExp('{{'+ k +'}}', 'g');
+        page = page.replace(patt, rules[k]);
+    }
 
     return page;
 }
@@ -98,11 +92,15 @@ function useFile(file){
 * 保存文件
 * */
 function saveFile(dist, fileData){
+    if(fs.existsSync(dist)){
+        console.log(`已存在 ${dist}`);
+        return false;
+    }
     fs.writeFile(dist, fileData, function(err){
         if(err){
             return console.log(err);
-        }else{
-            console.log(`已创建 ${dist}`);
         }
+
+        console.log(`已创建 ${dist}`);
     });
 }
