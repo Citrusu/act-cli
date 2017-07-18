@@ -29,17 +29,18 @@ init();
 function mkDir(src) {
     //创建多层目录
     let srcArr = src.split('/');
-    let file = '';
     srcArr.splice(0,1);
     srcArr.splice(srcArr.length - 1, 1);
     let srcStr = './';
-    srcArr.forEach((n, i) => {
+    srcArr.forEach(async (n, i) => {
         srcStr += n + '/';
         // console.log('检查目录'+srcStr);
         //检查目录是否存在，不存在则创建
         if(!fs.existsSync(srcStr)){
-            fs.mkdirSync(srcStr);
-            console.log(`创建目录 ${srcStr}`);
+            await fs.mkdir(srcStr, () => {
+                console.log(`创建目录 ${srcStr}`);
+            });
+
         }
     });
 }
@@ -95,4 +96,3 @@ function saveFile(dist, fileData){
         console.log(`已创建 ${dist}`);
     });
 }
-console.log('async')
