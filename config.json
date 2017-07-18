@@ -4,7 +4,11 @@
   "fileList": [{
     "fileName": "demo",
     "title": "活动示例"
-  }],
+  },
+    {
+      "fileName": "demo2",
+      "title": "活动示例2"
+    }],
   "page": {
     "src": {
       "html": "./template/html/demo.html",

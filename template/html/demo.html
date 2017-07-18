@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="{$NOW_THEME_URL}Assets/etui/css/actui.css?{$Think.ET_VERSION}">
     <!--ACTUI CSS 结束-->
     <!--页面css样式开始-->
-    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{module}}/common.css?{$Think.ET_VERSION}">
-    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{module}}/index.css?{$Think.ET_VERSION}">
+    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{module}}/{{page}}.css?{$Think.ET_VERSION}">
+    <link rel="stylesheet" type="text/css" href="{$NOW_THEME_URL}Assets/Css/{{module}}/{{page}}.css?{$Think.ET_VERSION}">
     <!--页面css样式结束-->
 </head>
 <body>
@@ -34,14 +34,14 @@
 
 </div>
 
-<!--微信分享-->
-<include file="_wxshare" />
+
+{{wxshare}}
 <include file="Public/etconfig" />
 <script>
 
     seajs.use('init',function(init){
-        seajs.use('Js/Laogb/common.js?{$Think.ET_VERSION}');
-        seajs.use('Js/Laogb/index.js?{$Think.ET_VERSION}');
+        seajs.use('Js/{{module}}/common.js?{$Think.ET_VERSION}');
+        seajs.use('Js/{{module}}/{{page}}.js?{$Think.ET_VERSION}');
     });
 
 </script>

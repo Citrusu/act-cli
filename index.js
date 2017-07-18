@@ -24,32 +24,22 @@ function init(){
 init();
 
 /*
-* 检查/创建文件夹
+* 检查/创建目录
 * */
 function mkDir(src) {
     //创建多层目录
     let srcArr = src.split('/');
     let file = '';
     srcArr.splice(0,1);
-    if(srcArr[srcArr.length - 1] === ''){
-        srcArr.splice(srcArr.length - 1, 1);
-    }else{
-        file = srcArr.splice(srcArr.length - 1, 1).toString();
-    }
+    srcArr.splice(srcArr.length - 1, 1);
     let srcStr = './';
     srcArr.forEach((n, i) => {
         srcStr += n + '/';
         // console.log('检查目录'+srcStr);
         //检查目录是否存在，不存在则创建
         if(!fs.existsSync(srcStr)){
-            fs.mkdirSync(srcStr, () => {
-                console.log(`创建目录 ${srcStr}`);
-            });
-        }else{
-            // console.log(`${srcStr}该目录已存在`)
-        }
-        if(i >= srcArr.length -1){
-            // console.log(file);
+            fs.mkdirSync(srcStr);
+            console.log(`创建目录 ${srcStr}`);
         }
     });
 }
@@ -76,7 +66,8 @@ function useFile(file, fileName){
     let rules = {
         Date: new Date(),
         module: config.module,
-        page: fileName
+        page: fileName,
+        wxshare: '<include file="_wxshare" />'
     };
     let page = file;
 
