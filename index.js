@@ -95,3 +95,4 @@ function saveFile(dist, fileData){
         console.log(`已创建 ${dist}`);
     });
 }
+console.log('async')
