@@ -9,9 +9,9 @@ const config = require('./config.json');
 let act = config.act;
 
 /*
-* 默认
-* 根据 page 创建 html,js,css，生成默认模板
-* */
+ * 默认
+ * 根据 page 创建 html,js,css，生成默认模板
+ * */
 function getBase() {
     let fileList = config.fileList;
     let map = config.page;
@@ -22,14 +22,14 @@ function getBase() {
             mkDir(dist);
             let tem = await readFile(map.src[key]);
             let page = useFile(tem, n.fileName);
-            saveFile(dist, page);
+            saveFile(config.base + dist, page);
         })
     }
 }
 
 /*
-* 生成其它文件，copy 模板到目录
-* */
+ * 生成其它文件，copy 模板到目录
+ * */
 async function copyFile(){
     let fileList = config.outs;
     fileList.forEach(async (n, i) => {
@@ -44,8 +44,8 @@ async function copyFile(){
 
 
 /*
-* 检查/创建目录
-* */
+ * 检查/创建目录
+ * */
 function mkDir(src) {
     //创建多层目录
     let srcArr = src.split('/');
@@ -66,8 +66,8 @@ function mkDir(src) {
 }
 
 /*
-* 读取文件
-* */
+ * 读取文件
+ * */
 function readFile(src){
     return new Promise((resolved, reject) => {
         fs.readFile(src, 'utf-8', (err, data) => {
@@ -81,8 +81,8 @@ function readFile(src){
 }
 
 /*
-* 操作文件
-* */
+ * 操作文件
+ * */
 function useFile(file, fileName){
     let rules = {
         Date: new Date(),
@@ -101,8 +101,8 @@ function useFile(file, fileName){
 }
 
 /*
-* 保存文件
-* */
+ * 保存文件
+ * */
 function saveFile(dist, fileData){
     if(fs.existsSync(dist)){
         console.log(`已存在 ${dist}`);
