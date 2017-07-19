@@ -1,14 +1,11 @@
 {
   "name": "",
-  "module": "Test",
+  "act": "Test",
+  "base": "./",
   "fileList": [{
     "fileName": "demo",
     "title": "活动示例"
-  },
-    {
-      "fileName": "demo2",
-      "title": "活动示例2"
-    }],
+  }],
   "page": {
     "src": {
       "html": "./template/html/demo.html",
@@ -16,11 +13,18 @@
       "css" : "./template/css/demo.css"
     },
     "dist": {
-      "html": "./Template/Wechat/Yidake/",
-      "js": "./Template/Wechat/Yidake/Assets/Js/",
-      "css": "./Template/Wechat/Yidake/Assets/Css/"
+      "html": "Template/Wechat/Yidake/",
+      "js": "Template/Wechat/Yidake/Assets/Js/",
+      "css": "Template/Wechat/Yidake/Assets/Css/"
     }
   },
+  "outs": [{
+    "src": "./template/html/_analytics.html",
+    "dist": "Template/Wechat/Yidake/"
+  },{
+    "src": "./template/html/_wxshare.html",
+    "dist": "Template/Wechat/Yidake/"
+  }],
   "analytics": {
     "cnzz": {
       "display": true,
